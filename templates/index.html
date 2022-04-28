@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House price prediction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+
+        * {
+            font-family: 'Nunito', sans-serif;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100vw;
+            background-image: url("https://images.pexels.com/photos/3394939/pexels-photo-3394939.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1");
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+
+        .main .nav {
+            color: white;
+            background: rgb(46, 174, 191);
+            padding: .6rem;
+        }
+
+        .main .outer {
+            display: flex;
+            height: 70vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .main .outer form .group {
+            display: flex;
+            justify-content: space-between;
+            color: white;
+            font-size: large;
+        }
+        .main .outer form{
+            width: 40vw;
+        }
+        .main .outer form .center{
+            width: 50vw;
+            display: flex;
+            justify-content: center;
+        }
+        .main .outer form .center-btn{
+            display: flex;
+            justify-content: center;
+        }
+        .main .outer form .center-btn input[type="submit"]{
+            color: white;
+            background-color: rgb(46, 174, 191);
+            padding: .5rem;
+            font-size: large;
+            border-radius: 10px;
+            border: none;
+            margin-top: 50px;
+            font-weight: bold;
+        }
+        .main .outer form .center-btn input[type="submit"]:hover{
+            background-color: blue;
+        }
+        .main .center{
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+        }
+        .main .center p{
+            background-color: rgb(46, 174, 191);
+            color:white;
+            padding: 1rem;
+            border-radius: 10px;
+           
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="main">
+        <div class="nav">
+            <h1 style="text-align: center;">PREDICTION OF RAINFALL</h1>
+        </div>
+        <div class="outer">
+            <form action="/predict" method="POST">
+               <center style="margin-top: 70px;"><h2><b></h2></b></center>
+                <div class="group group-1">
+                    <div class="inner">
+                        <label><b>
+                            MinTemp
+                        </b>
+                        </label>
+                        <br>
+                        <input type="text" name="MinTemp" id="MinTemp" required>
+                    </div>
+                    <div class="inner">
+                        <label><b>
+                            MaxTemp
+                        </b>
+                        </label>
+                        <br>
+                        <input type="text" name="MaxTemp" id="MaxTemp" required>
+                    </div>
+                    <div class="inner">
+                        <label><b>
+                            Rainfall
+                        </b>
+                        </label><br>
+                        <input type="text" name="Rainfall" id="Rainfall" required>
+                        <br>
+                    </div>
+                </div>
+                <div class="group group-2">
+                    <div class="inner">
+                        <label><b>Evaporation</b></label>
+                        <br>
+                        <input type="text" name="Evaporation" id="Evaporation" required>
+
+                    </div>
+                    <div class="inner">
+                        <label><b>Sunshine</b></label>
+                        <br>
+                        <input type="text" name="Sunshine" id="Sunshine" required>
+
+                    </div>
+                    <div class="inner">
+                        <label><b>WindGustDir</b></label>
+                        <br>
+                        <input type="text" name="WindGustDir" id="WindGustDir" required>
+                    </div>
+                </div>
+                <div class="group group-3">
+                    <div class="inner">
+                        <label><b>WindGustSpeed</b></label>
+                        <br>
+                        <input type="text" name="WindGustSpeed" id="WindGustSpeed" required>
+                    </div>
+                    <div class="inner">
+                        <label><b>WindDir9am</b></label>
+                        <br>
+                        <input type="text" name="WindDir9am" id="WindDir9am" required>
+                    </div>
+                    <div class="inner">
+                        <label><b>WindDir3pm</b></label>
+                        <br>
+                        <input type="text" name="WindDir3pm" id="WindDir3pm" required>
+                    </div>
+
+                </div>
+                <div class="group group-4">
+                <div class="inner">
+                    <label><b>WindSpeed9am</b></label>
+                    <br>
+                    <input type="text" name="WindSpeed9am" id="WindSpeed9am" required>
+                </div>
+                <div class="inner">
+                    <label><b>WindSpeed3pm</b></label>
+                    <br>
+                    <input type="text" name="WindSpeed3pm" id="WindSpeed3pm" required>
+                </div>
+                <div class="inner">
+                    <label><b>Humidity9am</b></label>
+                    <br>
+                    <input type="text" name="Humidity9am" id="Humidity9am" required>
+                </div>
+            </div>
+            <div class="group group-5">
+                <div class="inner">
+                    <label><b>Humidity3pm</b></label>
+                    <br>
+                    <input type="text" name="Humidity3pm" id="Humidity3pm" required>
+                </div>
+                <div class="inner">
+                    <label><b>Pressure9am</b></label>
+                    <br>
+                    <input type="text" name="Pressure9am" id="Pressure9am" required>
+                </div>
+                <div class="inner">
+                    <label><b>Pressure3pm</b></label>
+                    <br>
+                    <input type="text" name="Pressure3pm" id="Pressure3pm" required>
+                </div>
+            </div>
+            <div class="group group-6">
+                <div class="inner">
+                    <label><b>Cloud9am</b></label>
+                    <br>
+                    <input type="text" name="Cloud9am" id="Cloud9am" required>
+                </div>
+                <div class="inner">
+                    <label><b>Cloud3pm</b></label>
+                    <br>
+                    <input type="text" name="Cloud3pm" id="Cloud3pm" required>
+                </div>
+                <div class="inner">
+                    <label><b>Temp9am</b></label>
+                    <br>
+                    <input type="text" name="Temp9am" id="Temp9am" required>
+                </div>
+            </div>
+            <div class="group group-7">
+                <div class="inner">
+                    <label><b>Temp3pm</b></label>
+                    <br>
+                    <input type="text" name="Temp3pm" id="Temp3pm" required>
+                </div>
+                <div class="inner">
+                    <label><b>RainToday</b></label>
+                    <br>
+                    <input type="text" name="RainToday" id="RainToday" required>
+                </div>
+                <div class="inner">
+                    <label><b>month</b></label>
+                    <br>
+                    <input type="text" name="month" id="month" required>
+                </div>
+            </div>
+            <div class="group group-8">
+                <div class="inner">
+                    <label><b>day</b></label>
+                    <br>
+                    <input type="text" name="day" id="day" required>
+                </div>
+            </div>
+            <div class="center-btn">
+                <input type="submit" value="Predict">
+            
+        </div>
+      
+
+    </form>
+        </div>
+       <div class="center" style="margin-top: 60px;">
+            <p><b>ENSEMBLE MODEL PREDICTION :{{z}}</b></p>
+    </div>
+
+
+    </section>
+</body>
+
+</html>
